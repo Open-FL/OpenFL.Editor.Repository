@@ -1,0 +1,5 @@
+name: fl-editor-repository-plugin
+target: .\src\OpenFL.Editor.Repository\bin\Debug\netstandard2.0\OpenFL.Editor.Repository.dll
+output: .\docs\latest\fl-editor-repository-plugin.zip
+origin: https://open-fl.github.io/OpenFL.Editor.Repository/latest/info.txt
+flags: INFO_TO_OUTPUT
