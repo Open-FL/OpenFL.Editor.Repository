@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,7 +25,19 @@ namespace OpenFL.Editor.Repository
         private RepositoryViewer viewer = null;
         private RepositoryPlugin plugin = null;
 
-        [ToolbarItem("Repository Manager")]
+        [ToolbarItem("Repository Manager", int.MaxValue/2)]
+        private void RepositoryDummy()
+        {
+
+        }
+
+        [ToolbarItem("Repository Manager/Edit Origins..", 1)]
+        private void EditOrigins()
+        {
+            Process.Start(plugin.OriginFile);
+        }
+
+        [ToolbarItem("Repository Manager/Show Tree", 0)]
         private void OpenRepository()
         {
             if (plugin == null)
