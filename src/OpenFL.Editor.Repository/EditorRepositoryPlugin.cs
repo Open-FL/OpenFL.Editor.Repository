@@ -17,11 +17,11 @@ namespace OpenFL.Editor.Repository
     public class EditorRepositoryPlugin : APlugin<FLEditorPluginHost>
     {
 
-        public override bool HasIO => true;
+        public EditorRepositoryPlugin()
+        {
 
-        public override bool IsMainPlugin => true;
-
-        public override string Name => "fl-editor-repository-plugin";
+        }
+        
 
         private RepositoryViewer viewer = null;
         private RepositoryPlugin repoPlugin = null;
