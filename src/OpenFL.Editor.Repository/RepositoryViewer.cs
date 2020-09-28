@@ -12,6 +12,7 @@ using PluginSystem.Core.Pointer;
 using PluginSystem.StartupActions;
 
 using ThemeEngine;
+using ThemeEngine.Forms;
 
 namespace OpenFL.Editor.Repository
 {
@@ -40,7 +41,7 @@ namespace OpenFL.Editor.Repository
             if (e.Node.Parent != null)
             {
                 ActionRunner.AddActionToStartup($"{ActionRunner.ADD_ACTIVATE_PACKAGE_ACTION} {new BasePluginPointer(e.Node.Text).PluginOrigin}");
-                MessageBox.Show("Will be installed on restart.");
+                StyledMessageBox.Show("Startup Action Written" ,"Will be installed on restart.", MessageBoxButtons.OK, SystemIcons.Information);
             }
         }
 
