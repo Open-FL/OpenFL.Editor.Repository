@@ -20,18 +20,19 @@ namespace OpenFL.Editor.Repository
         public RepositoryViewer(List<PluginSystem.Repository.Repository> repos)
         {
             InitializeComponent();
-            StyleManager.RegisterControls(this);
-            
+
             foreach (PluginSystem.Repository.Repository repository in repos)
             {
-               TreeNode node= tvRepos.Nodes.Add(repository.RepositoryOrigin);
+                TreeNode node = tvRepos.Nodes.Add(repository.RepositoryOrigin);
                 foreach (BasePluginPointer basePluginPointer in repository.Plugins)
                 {
                     node.Nodes.Add(basePluginPointer.ToKeyPair());
                 }
             }
 
-            tvRepos.NodeMouseDoubleClick+= TvReposOnNodeMouseDoubleClick;
+            StyleManager.RegisterControls(this);
+
+            tvRepos.NodeMouseDoubleClick += TvReposOnNodeMouseDoubleClick;
         }
 
         private void TvReposOnNodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
