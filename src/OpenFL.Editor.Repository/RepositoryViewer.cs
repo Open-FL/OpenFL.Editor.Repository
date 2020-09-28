@@ -36,9 +36,9 @@ namespace OpenFL.Editor.Repository
 
         private void TvReposOnNodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
         {
-            if (e.Node.Parent != tvRepos.TopNode)
+            if (e.Node.Parent != null)
             {
-                ActionRunner.AddActionToStartup($"{ActionRunner.ADD_PACKAGE_ACTION} {e.Node.Text}");
+                ActionRunner.AddActionToStartup($"{ActionRunner.ADD_PACKAGE_ACTION} {new BasePluginPointer(e.Node.Text).PluginOrigin}");
                 MessageBox.Show("Will be installed on restart.");
             }
         }
