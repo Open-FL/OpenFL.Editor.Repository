@@ -39,7 +39,7 @@ namespace OpenFL.Editor.Repository
         {
             if (e.Node.Parent != null)
             {
-                ActionRunner.AddActionToStartup($"{ActionRunner.ADD_PACKAGE_ACTION} {new BasePluginPointer(e.Node.Text).PluginOrigin}");
+                ActionRunner.AddActionToStartup($"{ActionRunner.ADD_ACTIVATE_PACKAGE_ACTION} {new BasePluginPointer(e.Node.Text).PluginOrigin}");
                 MessageBox.Show("Will be installed on restart.");
             }
         }
