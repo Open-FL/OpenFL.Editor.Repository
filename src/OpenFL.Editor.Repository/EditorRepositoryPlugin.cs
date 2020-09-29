@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 using OpenFL.Editor.Utils.Plugins;
 
@@ -17,19 +13,14 @@ namespace OpenFL.Editor.Repository
     public class EditorRepositoryPlugin : APlugin<FLEditorPluginHost>
     {
 
-        public EditorRepositoryPlugin()
-        {
+        private RepositoryPlugin repoPlugin;
 
-        }
-        
 
-        private RepositoryViewer viewer = null;
-        private RepositoryPlugin repoPlugin = null;
+        private RepositoryViewer viewer;
 
         [ToolbarItem("Repository Manager", int.MaxValue / 2)]
         private void RepositoryDummy()
         {
-
         }
 
         private RepositoryPlugin GetPlugin()
@@ -40,7 +31,8 @@ namespace OpenFL.Editor.Repository
                 if (repoPlugin == null)
                 {
                     repoPlugin = new RepositoryPlugin();
-                    PluginManager.AddPlugin(repoPlugin,
+                    PluginManager.AddPlugin(
+                                            repoPlugin,
                                             new PluginAssemblyPointer(
                                                                       "repository-plugin",
                                                                       "",
@@ -74,5 +66,6 @@ namespace OpenFL.Editor.Repository
 
             viewer?.Show();
         }
+
     }
 }
