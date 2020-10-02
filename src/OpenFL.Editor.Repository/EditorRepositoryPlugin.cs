@@ -43,23 +43,24 @@ namespace OpenFL.Editor.Repository
                                                                           "0.0.0.0",
                                                                           PluginManager.PluginHost
                                                                          );
-                    if (!File.Exists(RepositoryPlugin.GetOriginFilePath(ptr)))
-                    {
-                        DialogResult res = StyledMessageBox.Show(
-                                               $"{ptr.PluginName}: First Startup.",
-                                               "Do you want to create the default Origins File?",
-                                               MessageBoxButtons.YesNo,
-                                               SystemIcons.Question
-                                              );
-                        if (res == DialogResult.Yes)
-                        {
-                            File.WriteAllText(RepositoryPlugin.GetOriginFilePath(ptr), "https://open-fl.github.io/RepositoryOrigins/open-fl-editor.txt\nhttps://open-fl.github.io/RepositoryOrigins/open-fl.txt\nhttps://open-fl.github.io/RepositoryOrigins/plugin-system.txt");
-                        }
-                    }
+                    
                     PluginManager.AddPlugin(
                                             repoPlugin,
                                             ptr
                                            );
+                }
+            }
+            if (!File.Exists(repoPlugin.OriginFile))
+            {
+                DialogResult res = StyledMessageBox.Show(
+                                                         $"{repoPlugin.PluginAssemblyData.PluginName}: First Startup.",
+                                                         "Do you want to create the default Origins File?",
+                                                         MessageBoxButtons.YesNo,
+                                                         SystemIcons.Question
+                                                        );
+                if (res == DialogResult.Yes)
+                {
+                    File.WriteAllText(repoPlugin.OriginFile, "https://open-fl.github.io/RepositoryOrigins/open-fl-editor.txt\nhttps://open-fl.github.io/RepositoryOrigins/open-fl.txt\nhttps://open-fl.github.io/RepositoryOrigins/plugin-system.txt");
                 }
             }
 
