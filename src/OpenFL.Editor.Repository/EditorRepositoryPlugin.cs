@@ -3,6 +3,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using System.Net;
 
 using OpenFL.Editor.Utils.Plugins;
 
@@ -60,11 +61,19 @@ namespace OpenFL.Editor.Repository
                                                         );
                 if (res == DialogResult.Yes)
                 {
-                    File.WriteAllText(repoPlugin.OriginFile, "https://open-fl.github.io/RepositoryOrigins/open-fl-editor.txt\nhttps://open-fl.github.io/RepositoryOrigins/open-fl.txt\nhttps://open-fl.github.io/RepositoryOrigins/plugin-system.txt");
+                    File.WriteAllText(repoPlugin.OriginFile, GetDefaultOrigin());
                 }
             }
 
             return repoPlugin;
+        }
+
+        private string GetDefaultOrigin()
+        {
+            using (WebClient wc = new WebClient())
+            {
+                return wc.DownloadString("https://open-fl.github.io/RepositoryOrigins/default-origin.txt");
+            }
         }
 
         [ToolbarItem("Repository Manager/Edit Origins..", 1)]
