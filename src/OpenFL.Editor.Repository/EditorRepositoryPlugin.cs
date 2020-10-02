@@ -1,5 +1,8 @@
 ﻿using System.Diagnostics;
+using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Windows.Forms;
 
 using OpenFL.Editor.Utils.Plugins;
 
@@ -7,6 +10,8 @@ using PluginSystem.Core;
 using PluginSystem.Core.Pointer;
 using PluginSystem.Repository;
 using PluginSystem.Utility;
+
+using ThemeEngine.Forms;
 
 namespace OpenFL.Editor.Repository
 {
@@ -31,15 +36,29 @@ namespace OpenFL.Editor.Repository
                 if (repoPlugin == null)
                 {
                     repoPlugin = new RepositoryPlugin();
+                    PluginAssemblyPointer ptr = new PluginAssemblyPointer(
+                                                                          "repository-plugin",
+                                                                          "",
+                                                                          "",
+                                                                          "0.0.0.0",
+                                                                          PluginManager.PluginHost
+                                                                         );
+                    if (!File.Exists(RepositoryPlugin.GetOriginFilePath(ptr)))
+                    {
+                        DialogResult res = StyledMessageBox.Show(
+                                               $"{ptr.PluginName}: First Startup.",
+                                               "Do you want to create the default Origins File?",
+                                               MessageBoxButtons.YesNo,
+                                               SystemIcons.Question
+                                              );
+                        if (res == DialogResult.Yes)
+                        {
+                            File.WriteAllText(RepositoryPlugin.GetOriginFilePath(ptr), "https://open-fl.github.io/RepositoryOrigins/open-fl-editor.txt\nhttps://open-fl.github.io/RepositoryOrigins/open-fl.txt\nhttps://open-fl.github.io/RepositoryOrigins/plugin-system.txt");
+                        }
+                    }
                     PluginManager.AddPlugin(
                                             repoPlugin,
-                                            new PluginAssemblyPointer(
-                                                                      "repository-plugin",
-                                                                      "",
-                                                                      "",
-                                                                      "0.0.0.0",
-                                                                      PluginManager.PluginHost
-                                                                     )
+                                            ptr
                                            );
                 }
             }
@@ -52,6 +71,13 @@ namespace OpenFL.Editor.Repository
         {
             RepositoryPlugin plugin = GetPlugin();
             Process.Start(plugin.OriginFile);
+        }
+
+        [ToolbarItem("Repository Manager/Delete Origins..", 1)]
+        private void DeleteOrigins()
+        {
+            RepositoryPlugin plugin = GetPlugin();
+            if (File.Exists(plugin.OriginFile)) File.Delete(plugin.OriginFile);
         }
 
         [ToolbarItem("Repository Manager/Show Tree", 0)]
