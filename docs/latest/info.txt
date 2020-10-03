@@ -1,1 +1,1 @@
-fl-editor-repository-plugin|OpenFL.Editor.Repository.dll|https://open-fl.github.io/OpenFL.Editor.Repository/latest/info.txt|1.0.0.29|
+fl-editor-repository-plugin|OpenFL.Editor.Repository.dll|https://open-fl.github.io/OpenFL.Editor.Repository/latest/info.txt|1.0.0.30|
