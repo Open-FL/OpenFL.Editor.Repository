@@ -2,8 +2,8 @@
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Windows.Forms;
 using System.Net;
+using System.Windows.Forms;
 
 using OpenFL.Editor.Utils.Plugins;
 
@@ -44,13 +44,14 @@ namespace OpenFL.Editor.Repository
                                                                           "0.0.0.0",
                                                                           PluginManager.PluginHost
                                                                          );
-                    
+
                     PluginManager.AddPlugin(
                                             repoPlugin,
                                             ptr
                                            );
                 }
             }
+
             if (!File.Exists(repoPlugin.OriginFile))
             {
                 DialogResult res = StyledMessageBox.Show(
@@ -87,7 +88,10 @@ namespace OpenFL.Editor.Repository
         private void DeleteOrigins()
         {
             RepositoryPlugin plugin = GetPlugin();
-            if (File.Exists(plugin.OriginFile)) File.Delete(plugin.OriginFile);
+            if (File.Exists(plugin.OriginFile))
+            {
+                File.Delete(plugin.OriginFile);
+            }
         }
 
         [ToolbarItem("Repository Manager/Show Tree", 0)]
